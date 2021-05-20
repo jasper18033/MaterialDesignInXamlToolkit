@@ -297,7 +297,7 @@ namespace MaterialDesignThemes.Wpf
                     snackbar = FindSnackbar();
                     if (snackbar != null)
                         break;
-
+                  
                     Trace.TraceWarning("A snackbar message is waiting, but no snackbar instances are assigned to the message queue.");
                     await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(true);
                 }
@@ -337,6 +337,8 @@ namespace MaterialDesignThemes.Wpf
 
         private async Task ShowAsync(Snackbar snackbar, SnackbarMessageQueueItem messageQueueItem, ManualResetEvent actionClickWaitHandle)
         {
+            snackbar.Visibility = Visibility.Visible;
+            snackbar.SetCurrentValue(Snackbar.IsActiveProperty, false);
             //create and show the message, setting up all the handles we need to wait on
             var mouseNotOverManagedWaitHandle = CreateAndShowMessage(snackbar, messageQueueItem, actionClickWaitHandle);
             var durationPassedWaitHandle = new ManualResetEvent(false);
@@ -368,6 +370,11 @@ namespace MaterialDesignThemes.Wpf
                 Content = messageQueueItem.Content,
                 ActionContent = messageQueueItem.ActionContent
             };
+            snackbarMessage.MouseDown += (sender, args) =>
+            {
+                //snackbar.Visibility = Visibility.Collapsed;
+                actionClickWaitHandle.Set();
+            };
             snackbarMessage.ActionClick += (sender, args) =>
             {
                 if (++clickCount == 1)
@@ -377,6 +384,11 @@ namespace MaterialDesignThemes.Wpf
             snackbar.SetCurrentValue(Snackbar.MessageProperty, snackbarMessage);
             snackbar.SetCurrentValue(Snackbar.IsActiveProperty, true);
             return new MouseNotOverManagedWaitHandle(snackbar);
+        }
+
+        private static void SnackbarMessage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private static async Task WaitForCompletionAsync(

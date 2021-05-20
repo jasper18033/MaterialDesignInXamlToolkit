@@ -336,7 +336,7 @@ namespace MaterialDesignThemes.Wpf
             if (_lastValidTime != null)
             {
                 //SetCurrentValue(SelectedTimeProperty, _lastValidTime.Value);
-                //_textBox.Text = _lastValidTime.Value.ToString(_lastValidTime.Value.Hour % 12 > 9 ? "hh:mm tt" : "h:mm tt");
+                //_textBox.Text = _lastValidTime.Value.ToString(_lastValidTime.Value.Hour % 12 > 9 ? "HH:mm tt" : "H:mm tt");
                 _textBox.Text = DateTimeToString(_lastValidTime.Value, DatePickerFormat.Short);
             }
 

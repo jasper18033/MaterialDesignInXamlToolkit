@@ -73,7 +73,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="wpf:SnackbarMessage">
-                    <DockPanel>
+                    <DockPanel  Panel.ZIndex="10">
                         <!-- will become a Panel to wrap a "pretend" button -->
                         <Button x:Name="PART_ActionButton"
                                 Command="{TemplateBinding ActionCommand}"

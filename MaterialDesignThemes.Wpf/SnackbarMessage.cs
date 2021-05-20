@@ -21,6 +21,10 @@ namespace MaterialDesignThemes.Wpf
         public const string ActionButtonPartName = "PART_ActionButton";
         private Action _templateCleanupAction = () => { };
 
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            //this.Visibility = Visibility.Hidden;
+        }
         static SnackbarMessage()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(SnackbarMessage), new FrameworkPropertyMetadata(typeof(SnackbarMessage)));
@@ -134,7 +138,7 @@ namespace MaterialDesignThemes.Wpf
         public static double GetInlineActionButtonMaxHeight(DependencyObject element) => (double) element.GetValue(InlineActionButtonMaxHeightProperty);
 
         public static readonly DependencyProperty ContentMaxHeightProperty = DependencyProperty.RegisterAttached(
-            "ContentMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(36d));
+            "ContentMaxHeight", typeof(double), typeof(SnackbarMessage), new PropertyMetadata(200d));
 
         public static void SetContentMaxHeight(DependencyObject element, double value) => element.SetValue(ContentMaxHeightProperty, value);
         public static double GetContentMaxHeight(DependencyObject element) => (double) element.GetValue(ContentMaxHeightProperty);

@@ -93,8 +93,8 @@
             </MultiDataTrigger>
             
             <DataTrigger Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Background)}" Value="{x:Null}">
-                <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
-                <Setter TargetName="DefaultErrorViewer" Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+                <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource MaterialDesignBackground}"/>
+                <Setter TargetName="DefaultErrorViewer" Property="Background" Value="{DynamicResource MaterialDesignBackground}"/>
             </DataTrigger>
 
             <DataTrigger Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:TextFieldAssist.HasOutlinedTextField)}" Value="True">
